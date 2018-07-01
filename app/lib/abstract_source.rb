@@ -1,5 +1,5 @@
 class AbstractSource
-  CHUNK_SIZE = 7
+  CHUNK_SIZE = 4096
 
   def initialize(text_upload, word_processor)
     @path = text_upload.upload_source

@@ -1,0 +1,24 @@
+<div style="padding: 20px;">
+  <div style="margin-bottom: 20px;"><%= link_to 'Get stats', :words_upload_list %></div>
+  <h1>Load Text</h1>
+  <div>
+    <% flash.each do |key, message| %> 
+      <p class="<%= key %>">
+        <%= message %>
+      </p> 
+    <% end %>
+  </div>
+  <%= form_tag words_count_path do %>
+  <div>
+    <div style="margin-bottom: 20px;">
+      <%= select_tag :payload_type, options_for_select(TextUpload::PAYLOAD_TYPES.invert, params[:payload_type]) %>
+    </div>
+    <div style="margin-bottom: 20px;">
+      <%= text_area_tag :payload, nil, rows: 10, cols: 100 %>
+    </div>
+    <div style="margin-bottom: 20px;">
+      <%= submit_tag "Edit this article" %>
+    </div>
+  </div>
+  <% end %>
+</div>

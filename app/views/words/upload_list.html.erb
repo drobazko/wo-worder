@@ -1,0 +1,29 @@
+<div style="padding: 20px;">
+  <div style="margin-bottom: 20px;"><%= link_to 'Load text', :words_index %></div>
+  <h1>Choose upload</h1>
+  <div>
+    <% flash.each do |key, message| %> 
+      <p class="<%= key %>">
+        <%= message %>
+      </p> 
+    <% end %>
+  </div>
+  <% if @word %>
+    <div>
+      <h2 style="color: red;"><%= @word %> - <%= @count %></h2>
+    </div>
+  <% end %>
+  <%= form_tag words_stat_path do %>
+  <div>
+    <div style="margin-bottom: 20px;">
+      <%= select_tag :upload, options_for_select(@uploads.map{|u| ["#{u.source_type}|#{u.status}|#{u.created_at}", u.id]}, @upload && @upload.h) %>
+    </div>
+    <div style="margin-bottom: 20px;">
+      <%= text_field_tag :word, @word %>
+    </div>
+    <div style="margin-bottom: 20px;">
+      <%= submit_tag "Find word" %>
+    </div>
+  </div>
+  <% end %>
+</div>
